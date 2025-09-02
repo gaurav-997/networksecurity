@@ -1,0 +1,14 @@
+mlflow
+scikit-learn
+pandas
+numpy
+keras
+tensorflow
+dvc
+dagshub
+dvc_s3
+boto3
+apache-airflow-providers-http==4.10.1
+apache-airflow-providers-postgres==5.8.0
+pytest
+python-dotenv
