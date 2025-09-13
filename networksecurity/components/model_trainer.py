@@ -19,9 +19,10 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-from urllib.parse import urlparse
-
 import dagshub
+dagshub.init(repo_owner='chauhan7gaurav', repo_name='networksecurity', mlflow=True)
+
+from urllib.parse import urlparse
 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainingConfig,data_transformation_artifact:DataTransformationArtifact):
@@ -39,6 +40,7 @@ class ModelTrainer:
             recall_score = classificationmetric.recall_score
             precision_score = classificationmetric.precision_score
             
+            #  logging metrics & after importing dasgshub with repo this log.metrics knows where to create mlrun folder and load logs & artifacts 
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("recall_score",recall_score)
             mlflow.log_metric("precision_score",precision_score)
@@ -119,7 +121,8 @@ class ModelTrainer:
 
         Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
         save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
-        #model pusher
+        
+        #model pusher to final_model dir 
         save_object("final_model/model.pkl",best_model)
         
 

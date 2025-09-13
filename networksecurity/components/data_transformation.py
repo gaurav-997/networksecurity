@@ -76,10 +76,10 @@ class DataTransformation:
         #save numpy array data
         save_numpy_array_data( self.data_transformation_config.transformed_train_file_path, array=train_arr, )
         save_numpy_array_data( self.data_transformation_config.transformed_test_file_path,array=test_arr,)
-        
-        # save as pkl file 
         save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object,)
-        save_object( "final_model/preprocessor.pkl", preprocessor_object,)
+        
+        # save as pkl file in final_model path ( their I need best_model from model training and preprocessing model from here )
+        save_object( "final_model/preprocessor.pkl", preprocessor_object,) 
         
         #preparing artifacts ( o/p of data transformation )
         data_transformation_artifact=DataTransformationArtifact(
